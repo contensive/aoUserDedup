@@ -87,7 +87,7 @@ Private Function GetForm() As String
     Dim PrimaryFieldListId As Long
     Dim KeyValue As String
     Dim LcaseTableName As String
-    Dim caption As String
+    Dim Caption As String
     Dim Description As String
     Dim AdminUI As Object
     Dim ButtonList As String
@@ -121,7 +121,7 @@ Private Function GetForm() As String
     '
     Set Csv = CreateObject("ccCsrvr3.ContentServerClass")
     '
-    caption = "User DeDup Tool"
+    Caption = "User DeDup Tool"
     Description = "" _
         & "<p>Use this tool to search for user duplicates, isolate the record which best describes the user, and merge the duplicates into the target record.</p>" _
         & "<p>The merge target is highlighted in red. This is the user record that will be preserved. All others will be removed, and all references to these records will be transfered to the target.</p>" _
@@ -293,7 +293,7 @@ Private Function GetForm() As String
                             SQL = "update ccemaillog set MemberID=" & TargetMemberID & " where MemberID=" & MemberID
                             Call Csv.ExecuteSQL("default", SQL)
                             '
-                            If Csv.isSqlTableField("", "orders", "id") Then
+                            If Csv.IsSQLTableField("", "orders", "id") Then
                                 SQL = "update orders set MemberID=" & TargetMemberID & " where MemberID=" & MemberID
                                 Call Csv.ExecuteSQL("default", SQL)
                             End If
@@ -475,10 +475,15 @@ Private Function GetForm() As String
                 '
                 RowCount = 0
                 If SecondaryFieldName <> "" Then
-                    SQL = "select top 100 " & PrimaryFieldName & "," & SecondaryFieldName & ",count(id) as cnt from ccMembers where (contentcontrolid<>0) group by " & PrimaryFieldName & "," & SecondaryFieldName & " having (count(id)>1)and(" & PrimaryFieldName & " is not null)and(" & SecondaryFieldName & " is not null)"
+                    SQL = "select  " & PrimaryFieldName & "," & SecondaryFieldName & ",count(id) as cnt from ccMembers where (contentcontrolid<>0) group by " & PrimaryFieldName & "," & SecondaryFieldName & " having (count(id)>1)and(" & PrimaryFieldName & " is not null)and(" & SecondaryFieldName & " is not null) order by " & PrimaryFieldName & "," & SecondaryFieldName & ""
                 Else
-                    SQL = "select top 100 " & PrimaryFieldName & ",count(id) as cnt from ccMembers where (contentcontrolid<>0) group by " & PrimaryFieldName & " having (count(id)>1)and(" & PrimaryFieldName & " is not null)"
+                    SQL = "select  " & PrimaryFieldName & ",count(id) as cnt from ccMembers where (contentcontrolid<>0) group by " & PrimaryFieldName & " having (count(id)>1)and(" & PrimaryFieldName & " is not null) order by " & PrimaryFieldName & ""
                 End If
+'                If SecondaryFieldName <> "" Then
+'                    SQL = "select top 100 " & PrimaryFieldName & "," & SecondaryFieldName & ",count(id) as cnt from ccMembers where (contentcontrolid<>0) group by " & PrimaryFieldName & "," & SecondaryFieldName & " having (count(id)>1)and(" & PrimaryFieldName & " is not null)and(" & SecondaryFieldName & " is not null)"
+'                Else
+'                    SQL = "select top 100 " & PrimaryFieldName & ",count(id) as cnt from ccMembers where (contentcontrolid<>0) group by " & PrimaryFieldName & " having (count(id)>1)and(" & PrimaryFieldName & " is not null)"
+'                End If
                 CS = Main.OpenCSSQL("default", SQL)
                 If Main.IsCSOK(CS) Then
                     Stream = Stream & "<tr><td colspan=2 style=""padding:20px;"">"
@@ -608,7 +613,7 @@ End If
                     Description = Description & "<p class=ccError>" & ErrorString & "</p>"
                 End If
                 Set AdminUI = CreateObject("ccWeb3.AdminUIClass")
-                GetForm = AdminUI.GetBody(Main, caption, ButtonList, "", False, False, Description, "", 0, GetForm)
+                GetForm = AdminUI.GetBody(Main, Caption, ButtonList, "", False, False, Description, "", 0, GetForm)
                 Call Main.AddPageTitle("User DeDup")
             End If
         End If
