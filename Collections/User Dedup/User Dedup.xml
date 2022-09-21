@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Collection name="User Dedup" guid="{94D14FE8-29F9-4820-8FB6-0341C643737D}" system="No" updatable="Yes" blockNavigatorNode="No">
+	<HelpLink>http://wiki.kmacloud.net/index.php?title=User_Dedup</HelpLink>
+	<Help></Help>
+	<Addon name="User Dedup All" guid="{573F27CD-4C3C-4213-9264-AA81AEA934FB}" type="Tool">
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID><![CDATA[aoUserDedup.dedupAllClass]]></ActiveXProgramID>
+		<DotNetClass></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help><![CDATA[<p>This tool executes the dedup operation on the entire people content (all users). It uses the settings you create in the Dedup Manually tool.<br></p><p>First, you select either "email" or "username" as the primary key field. This means that if there are two or more records with same value in the selected field (email or username), this will qualify as a duplicate and all but one of the records will be deleted. If the deleted records are members of a group, this will be merged into the record that is kept.</p><p>To determine which record is kept, performs the following:</p><p>If any of the records have both a username and a password, all other records are removed.</p><p>If any of the remaining records are administrators or developers, all other records are removed.</p><p>If any of the remaining records have ever visited the site, only the one that visited most recently is kept.</p><p>If there are still duplicates, the record with the lowest id number is kept. This is the record that was created first.<br></p><p><br></p>]]></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>No</BlockEditTools>
+		<FormXML></FormXML>
+		<IsInline>No</IsInline>
+		<JavascriptOnLoad></JavascriptOnLoad>
+		<JavascriptInHead></JavascriptInHead>
+		<JavascriptBodyEnd></JavascriptBodyEnd>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<Content>No</Content>
+		<Template>No</Template>
+		<Email>No</Email>
+		<Admin>Yes</Admin>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles></Styles>
+		<Scripting Language="" EntryPoint="" Timeout="5000"/>
+	</Addon>
+	<Addon name="User Dedup Individuals" guid="{48AE3744-7AFC-4B36-880A-98E3F9E6D391}" type="Tool">
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID><![CDATA[aoUserDeDup.ManualClass]]></ActiveXProgramID>
+		<DotNetClass></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help><![CDATA[<p>Use the manual dedup to remove duplicates from the people content (users).</p><p>Click the tool and select which fields you want to dedup against. Your default choices are email or username. This means is will find all records that have a duplicate in the data of the selected field.</p><p>When you search for duplicates you will get a screen of all the duplicates found. Click on a row to show all the records in the duplicate group. For instance, if there are ten people with the email bob@server.com and you search using email as the primary key, you will get a row showing ten people with the same email address. Click on that row and you will see all ten of them. One will be selected as the row to keep. You can change this if needed.<br></p>]]></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>No</BlockEditTools>
+		<FormXML></FormXML>
+		<IsInline>No</IsInline>
+		<JavascriptOnLoad></JavascriptOnLoad>
+		<JavascriptInHead></JavascriptInHead>
+		<JavascriptBodyEnd></JavascriptBodyEnd>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<Content>No</Content>
+		<Template>No</Template>
+		<Email>No</Email>
+		<Admin>Yes</Admin>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<PageTitle><![CDATA[Manual deDup]]></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles></Styles>
+		<Scripting Language="" EntryPoint="" Timeout="5000"/>
+	</Addon>
+	<Resource name="aouserdedup.dll" type="executable" path="" />
+</Collection>
